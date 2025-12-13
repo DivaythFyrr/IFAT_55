@@ -23,7 +23,7 @@ public class BaseTest {
         options.addArguments("--headless");
 
         driver = new FirefoxDriver(options);
-        driver.manage().timeouts().implicitlyWait(7,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
     }
