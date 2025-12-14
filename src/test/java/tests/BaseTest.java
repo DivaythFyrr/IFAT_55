@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 
@@ -14,6 +15,7 @@ public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
+    CartPage cartPage;
 
     @BeforeMethod
     public void setup() {
@@ -26,6 +28,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @AfterMethod

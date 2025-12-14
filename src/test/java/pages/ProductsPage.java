@@ -2,20 +2,14 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage {
     private static final String ADD_TO_CART_BUTTON_PATTERN = "//div[text()='%s']//ancestor::div[@class='inventory_item']//button";
-    By pageTitle = By.xpath("//*[@data-test='title']");
-    By cartBage = By.xpath("//*[@data-test='shopping-cart-badge']");
+    By cartBadge = By.xpath("//*[@data-test='shopping-cart-badge']");
 
     public ProductsPage(WebDriver driver) {
-        super(driver);
-    }
 
-    public boolean isPageLoaded() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
-        return driver.findElement(pageTitle).isDisplayed();
+        super(driver);
     }
 
     public void addToCart(final String goodsName) {
@@ -23,7 +17,15 @@ public class ProductsPage extends BasePage {
         driver.findElement(addGoodsToCart).click();
     }
 
+    public void addToCart(final int goodsOrder) {
+        driver.findElements(By.xpath(TEXT_LOCATOR_PATTERN.formatted("Add to cart"))).get(goodsOrder).click();
+    }
+
     public String checkGoodsQuantity() {
-        return driver.findElement(cartBage).getText();
+        return driver.findElement(cartBadge).getText();
+    }
+
+    public void switchToCart() {
+        driver.findElement(cartBadge).click();
     }
 }
