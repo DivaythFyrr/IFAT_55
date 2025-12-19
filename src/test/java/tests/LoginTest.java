@@ -35,8 +35,10 @@ public class LoginTest extends BaseTest {
     @TmsLink("IFAT_55")
     @Test(description = "Check incorrect login", priority = 1, dataProvider = "invalidData")
     public void checkIncorrectLogin(User user, String errorMsg) {
-        loginPage.open();
-        loginPage.login(user);
+        loginPage
+                .open()
+                .login(user);
+
         assertTrue(loginPage.isErrorMsgAppear(), "Error message is not appear");
         assertEquals(loginPage.errorMsgText(), errorMsg);
     }
@@ -44,8 +46,9 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Check correct login", priority = 2)
     public void checkCorrectLogin() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
 
         assertTrue(productsPage.isPageLoaded(PRODUCTS.getDisplayName()), "Incorrect login");
     }
