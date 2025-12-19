@@ -1,20 +1,27 @@
 package tests;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 
+import static enums.TitleNaming.CARTS;
 import static org.testng.Assert.*;
+import static user.UserFactory.withAdminPermission;
 
 public class CartTest extends BaseTest {
-    @Test(description = "Наличие товаров в козине")
+    @Owner("Vladimir example@email.com")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(description = "Availability of goods in the cart")
     public void checkGoodsInCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         productsPage.isPageLoaded("Products");
         productsPage.addToCart("Sauce Labs Fleece Jacket");
         productsPage.addToCart("Sauce Labs Onesie");
         productsPage.switchToCart();
 
-        cartPage.isPageLoaded("Your Cart");
+        cartPage.isPageLoaded(CARTS.getDisplayName());
         assertEquals(cartPage.getProductsNames().size(), 2);
         assertFalse(cartPage.getProductsNames().isEmpty());
         assertTrue(cartPage.getProductsNames().contains("Sauce Labs Onesie"));
