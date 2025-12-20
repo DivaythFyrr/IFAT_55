@@ -14,7 +14,8 @@ public class CartTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Availability of goods in the cart")
     public void checkGoodsInCart() {
-        loginPage.open()
+        loginPage
+                .open()
                 .login(withAdminPermission());
         productsPage.isPageLoaded("Products");
         productsPage

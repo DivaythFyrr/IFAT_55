@@ -13,7 +13,8 @@ public class ProductsTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Adding products to cart")
     public void checkGoodsAdded() {
-        loginPage.open()
+        loginPage
+                .open()
                 .login(withAdminPermission());
         productsPage.isPageLoaded("Products");
         productsPage
