@@ -13,12 +13,15 @@ public class ProductsTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Adding products to cart")
     public void checkGoodsAdded() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.isPageLoaded("Products");
-        productsPage.addToCart("Sauce Labs Fleece Jacket");
-        productsPage.addToCart("Sauce Labs Onesie");
-        productsPage.addToCart(3);
+        productsPage
+                .addToCart("Sauce Labs Fleece Jacket")
+                .addToCart("Sauce Labs Onesie")
+                .addToCart(3);
+
         assertEquals(productsPage.checkGoodsQuantity(), "3");
     }
 }

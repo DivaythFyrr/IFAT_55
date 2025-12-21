@@ -14,12 +14,14 @@ public class CartTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Availability of goods in the cart")
     public void checkGoodsInCart() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.isPageLoaded("Products");
-        productsPage.addToCart("Sauce Labs Fleece Jacket");
-        productsPage.addToCart("Sauce Labs Onesie");
-        productsPage.switchToCart();
+        productsPage
+                .addToCart("Sauce Labs Fleece Jacket")
+                .addToCart("Sauce Labs Onesie")
+                .switchToCart();
 
         cartPage.isPageLoaded(CARTS.getDisplayName());
         assertEquals(cartPage.getProductsNames().size(), 2);
